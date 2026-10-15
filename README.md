@@ -11,7 +11,6 @@ National University of Sciences and Technology (NUST), Rawalpindi, Pakistan, 202
 ![ROS2](https://img.shields.io/badge/ROS2-Humble-blue)
 ![Flutter](https://img.shields.io/badge/Flutter-App-02569B)
 ![Simulation](https://img.shields.io/badge/Simulation-Gazebo-orange)
-![Status](https://img.shields.io/badge/Status-Unpublished%20Thesis%20Work-lightgrey)
 
 </div>
 
