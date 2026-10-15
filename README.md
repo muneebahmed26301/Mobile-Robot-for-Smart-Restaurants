@@ -27,7 +27,7 @@ National University of Sciences and Technology (NUST), Rawalpindi, Pakistan, 202
   <em>The fully assembled robot.</em>
 </p>
 
-[![Watch the video](https://img.youtube.com/vi/35dCYEPn0xA/maxresdefault.jpg)](https://www.youtube.com/watch?v=_5tFXJQIzi4)
+[![Watch the video](https://img.youtube.com/vi/35dCYEPn0xA/maxresdefault.jpg)](https://www.youtube.com/35dCYEPn0xA)
 
 
 ---
