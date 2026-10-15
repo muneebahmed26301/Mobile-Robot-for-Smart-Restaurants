@@ -17,11 +17,23 @@ National University of Sciences and Technology (NUST), Rawalpindi, Pakistan, 202
 
 > **Notice.** This repository is shared privately for admission review only. Copying, redistribution, or reuse without written permission from the authors is not permitted. See [Copyright](#copyright).
 
+<p align="center">
+  <img src="assets/robot_assembled.png" width="500" alt="Fully assembled robot">
+  <br>
+  <em>The fully assembled robot.</em>
+</p>
+
 ---
 
 ## Abstract
 
 This thesis presents the design and development of an autonomous mobile robot tailored for indoor food delivery in restaurant environments. Aimed at enhancing service efficiency and reducing human dependency, the robot is capable of autonomously navigating restaurant layouts and delivering food from the kitchen to customer tables. The system leverages vision-based navigation, real-time image processing, and a camera-driven junction detection model to follow designated floor paths. Its mechanical structure supports a 20 kg payload and includes detachable trays for efficient loading and unloading. Control is achieved through an ESP32-based embedded system, integrating motors, sensors, and cameras for coordinated operation. The software stack is built using ROS2 and includes modules for line following, path planning, and basic obstacle detection. Results from both simulation and real-world testing confirm the robot’s effectiveness in mimicking waiter functions in structured settings. The project demonstrates a viable, low-cost approach to automating restaurant service and lays the groundwork for future enhancements such as SLAM-based free navigation and dynamic path re-planning.
+
+<p align="center">
+  <img src="assets/connections_diagram.png" width="700" alt="System connections diagram">
+  <br>
+  <em>System connections diagram.</em>
+</p>
 
 ---
 
@@ -48,6 +60,12 @@ This thesis presents the design and development of an autonomous mobile robot ta
 5. OpenCV: OpenCV (Open-Source Computer Vision Library) is a popular open-source library of computer vision algorithms mainly aimed at real-time image processing. OpenCV was employed in the robot’s vision nodes for tasks such as line detection, perspective transformations, and image filtering to enable robust line following.
 6. YOLO: YOLO (You Only Look Once) refers to a family of real-time object detection models that identify and classify objects in a single pass through an image. A custom lightweight YOLO-based model (YOLOv11n-cls) was trained and used to classify junctions on the floor (e.g., left turn, right turn, T-junction), assisting the robot in path decision-making during navigation.
 
+<p align="center">
+  <img src="assets/gazebo_simulation.png" width="700" alt="Gazebo restaurant simulation">
+  <br>
+  <em>Restaurant environment and navigation simulation in ROS2 and Gazebo.</em>
+</p>
+
 ---
 
 ## Navigation
@@ -70,6 +88,12 @@ Throughout this process, a motor control node (the closed-loop controller) conti
 
 Moreover, the robot’s linear speed is modulated based on the complexity of the upcoming path segment and the magnitude of the tracking error. The robot will automatically slow down when approaching a sharp turn or a complex junction, providing more time to accurately execute the maneuver, and will speed up on long straight segments once it is properly aligned with the guide line. The result is a smooth line-following behavior that can handle gentle curves and intersections without jerky movements or losing the path. By combining vision-based line tracking, marker-based junction recognition, and graph-based path planning, the robot effectively navigates the restaurant environment to deliver orders to specified locations.
 
+<p align="center">
+  <img src="assets/ros_node_diagram.png" width="800" alt="ROS node and topic diagram">
+  <br>
+  <em>ROS node and topic diagram of the navigation system.</em>
+</p>
+
 ---
 
 ## Collision Avoidance
@@ -82,6 +106,12 @@ The collision avoidance routine operates as follows:
 2. Obstacle Detection and Halt: If the object detection module identifies an obstacle directly ahead within a predefined safety distance threshold, the robot’s control system triggers an immediate stop. This is accomplished by the ROS 2 navigation stack sending a zero-velocity command (geometry_msgs/Twist with linear velocities set to zero) to the motor controller. The low-level motor control is handled by an ESP32 microcontroller running micro-ROS, which subscribes to the velocity command topic. Instead of directly driving the motors at a fixed output, it uses feedback from wheel encoders to adjust PWM signals so that the actual wheel speeds match the commanded speeds. This closed-loop control ensures that if the robot is told to stop (velocity command zero), the motors are actively braked to zero motion and hold there, even on slopes or if carrying a load. Similarly, if an obstacle is detected and the main ROS node commands a stop, the microcontroller will ramp down the motor speeds smoothly to avoid abrupt jerks. The micro-ROS framework enables this microcontroller to act as a ROS2 node, meaning it can publish sensor readings (like wheel encoder ticks or IMU data) and subscribe to movement commands seamlessly. The motor driver node on the ESP32 implements a simple proportional controller for speed: it increases or decreases the motor PWM until the measured encoder rate matches the desired speed, and maintains it. This not only provides precision in navigation but also contributes to safety: if the robot were to, for example, hit a small bump or encounter resistance, the controller would adjust power to maintain control, rather than the robot lurching unexpectedly.
 3. Wait Period: After halting, the robot remains stationary for a brief waiting period (on the order of a few seconds). This pause is intended to give the obstacle a chance to move out of the way on its own. For instance, if a person is walking in front of the robot or momentarily blocking its route, they may naturally clear the path within a couple of seconds. The robot’s software simply maintains the stopped state during this interval, continuously monitoring the camera feed to check if the obstacle is gone.
 4. Audible Warning: If the obstacle persists in the path after the short wait, the robot then issues an audible warning to prompt clearance. The onboard laptop’s speakers play a pre-recorded message or sound (for example, a polite spoken request such as “Excuse me, please clear the way”) to alert nearby people of the robot’s presence. This audio alert is intended to draw human attention and politely request assistance in removing or bypassing the obstacle. The system uses ROS 2 audio output capabilities to automate this warning step as part of the collision avoidance behavior.
+
+<p align="center">
+  <img src="assets/collision_detection.png" width="500" alt="Depth camera detecting a person">
+  <br>
+  <em>Depth camera detecting a person and measuring distance.</em>
+</p>
 
 ---
 
@@ -126,7 +156,14 @@ The project was overall a success, the four deliverables for the project were ac
 .
 ├── README.md
 ├── LICENSE
-└── [add your folders here, for example: ros2_ws/, firmware/, apps/, docs/]
+├── src/
+│   ├── camera_line_follow/    # line following and junction classification
+│   ├── depth_core/            # depth camera collision avoidance
+│   ├── master_controller/     # navigation, graph, path planning, motor control
+│   └── robot_interfaces/      # custom ROS2 messages
+├── esp32_code/                # ESP32 firmware
+├── model_train/               # junction classifier training
+└── assets/                    # images used in this README
 ```
 
 ---
@@ -136,11 +173,13 @@ The project was overall a success, the four deliverables for the project were ac
 **Requirements:** Ubuntu 22.04, ROS2 Humble, Gazebo, OpenCV, Flutter SDK.
 
 ```bash
-git clone [repo-url]
-cd [repo-name]
+git clone https://github.com/muneebahmed26301/Mobile-Robot-for-Smart-Restaurants_1.git
+cd Mobile-Robot-for-Smart-Restaurants_1
+colcon build
+source install/setup.bash
 ```
 
-Firebase credentials, API keys, and trained model weights are not included in this release.
+Firebase credentials, API keys, and trained model weights are not included in this release. Place your own Firebase service account key in `src/master_controller/creds/`.
 
 ---
 
