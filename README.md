@@ -200,4 +200,4 @@ Copyright (c) 2025 Ahmed Saeed, Mohib Ahmed, Muneeb Ahmad, Muhammad Zakriya. All
 
 This repository is shared solely for admission review. No license is granted to copy, modify, distribute, or use this code for any other purpose without written permission from the authors.
 
-**Contact:** `[your email]`
+**Contact:** `[muneeb.nust.mts.2021@gmail.com]`
