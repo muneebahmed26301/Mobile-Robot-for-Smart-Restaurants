@@ -42,7 +42,7 @@ This thesis presents the design and development of an autonomous mobile robot ta
 </p>
 
 <p align="center">
-  <img src="assets/Window-App-Design-Layout.png" width="500" alt="Order Management App">
+  <img src="assets/Window-App-Design-Layout.jpg" width="500" alt="Order Management App">
   <br>
   <em>Order Management App.</em>
 </p>
