@@ -13,6 +13,9 @@ National University of Sciences and Technology (NUST), Rawalpindi, Pakistan, 202
 ![YOLO](https://img.shields.io/badge/YOLO-v11-00FFFF)
 ![Firebase](https://img.shields.io/badge/Firebase-Backend-FFCA28?logo=firebase&logoColor=black)
 ![ESP32](https://img.shields.io/badge/ESP32-Enabled-E7352C?logo=espressif&logoColor=white)
+![ROS2](https://img.shields.io/badge/ROS2-Humble-blue)
+![Flutter](https://img.shields.io/badge/Flutter-App-02569B)
+![Simulation](https://img.shields.io/badge/Simulation-Gazebo-orange)
 
 </div>
 
