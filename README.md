@@ -99,6 +99,12 @@ Throughout this process, a motor control node (the closed-loop controller) conti
 
 Moreover, the robot’s linear speed is modulated based on the complexity of the upcoming path segment and the magnitude of the tracking error. The robot will automatically slow down when approaching a sharp turn or a complex junction, providing more time to accurately execute the maneuver, and will speed up on long straight segments once it is properly aligned with the guide line. The result is a smooth line-following behavior that can handle gentle curves and intersections without jerky movements or losing the path. By combining vision-based line tracking, marker-based junction recognition, and graph-based path planning, the robot effectively navigates the restaurant environment to deliver orders to specified locations.
 
+<p align="center">
+  <img src="assets/Restaurant-Node-Edge-Map.jpg" width="500" alt="Restaurant node edge Map">
+  <br>
+  <em>Restaurant node edge Map.</em>
+</p>
+
 ---
 
 ## Collision Avoidance
