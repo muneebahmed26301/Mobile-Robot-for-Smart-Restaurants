@@ -1,0 +1,15 @@
+build/
+install/
+log/
+.vscode/
+.dart_tool/
+__pycache__/
+*.pt
+*.pth
+*.onnx
+.env
+google-services.json
+firebase_options.dart
+src/master_controller/creds/
+*firebase-adminsdk*.json
+*.pptx
