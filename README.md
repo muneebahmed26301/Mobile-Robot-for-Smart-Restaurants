@@ -26,6 +26,8 @@ National University of Sciences and Technology (NUST), Rawalpindi, Pakistan, 202
   <br>
   <em>The fully assembled robot.</em>
 </p>
+![Watch the demo video](assets/Mobile Robotics for smart Restaurant - Gazebo simulation Test_changed.mp4)
+
 
 ---
 
