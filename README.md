@@ -18,7 +18,7 @@ National University of Sciences and Technology (NUST), Rawalpindi, Pakistan, 202
 > **Notice.** This repository is shared privately for admission review only. Copying, redistribution, or reuse without written permission from the authors is not permitted. See [Copyright](#copyright).
 
 <p align="center">
-  <img src="assets/robot_assembled.png" width="500" alt="Fully assembled robot">
+  <img src="assets/Real-body.jpg" width="500" alt="Fully assembled robot">
   <br>
   <em>The fully assembled robot.</em>
 </p>
@@ -30,11 +30,22 @@ National University of Sciences and Technology (NUST), Rawalpindi, Pakistan, 202
 This thesis presents the design and development of an autonomous mobile robot tailored for indoor food delivery in restaurant environments. Aimed at enhancing service efficiency and reducing human dependency, the robot is capable of autonomously navigating restaurant layouts and delivering food from the kitchen to customer tables. The system leverages vision-based navigation, real-time image processing, and a camera-driven junction detection model to follow designated floor paths. Its mechanical structure supports a 20 kg payload and includes detachable trays for efficient loading and unloading. Control is achieved through an ESP32-based embedded system, integrating motors, sensors, and cameras for coordinated operation. The software stack is built using ROS2 and includes modules for line following, path planning, and basic obstacle detection. Results from both simulation and real-world testing confirm the robot’s effectiveness in mimicking waiter functions in structured settings. The project demonstrates a viable, low-cost approach to automating restaurant service and lays the groundwork for future enhancements such as SLAM-based free navigation and dynamic path re-planning.
 
 <p align="center">
-  <img src="assets/connections_diagram.png" width="700" alt="System connections diagram">
+  <img src="assets/Android-Control-App-Design-Layout.png" width="500" alt="Technical Team Maintaince App">
   <br>
-  <em>System connections diagram.</em>
+  <em>Technical Team Maintaince App.</em>
 </p>
 
+<p align="center">
+  <img src="assets/Android-App-Design-Layout.png" width="500" alt="Customer ordering App">
+  <br>
+  <em>Customer ordering App.</em>
+</p>
+
+<p align="center">
+  <img src="assets/Window-App-Design-Layout.png" width="500" alt="Order Management App">
+  <br>
+  <em>Order Management App.</em>
+</p>
 ---
 
 ## Table of Contents
@@ -61,7 +72,7 @@ This thesis presents the design and development of an autonomous mobile robot ta
 6. YOLO: YOLO (You Only Look Once) refers to a family of real-time object detection models that identify and classify objects in a single pass through an image. A custom lightweight YOLO-based model (YOLOv11n-cls) was trained and used to classify junctions on the floor (e.g., left turn, right turn, T-junction), assisting the robot in path decision-making during navigation.
 
 <p align="center">
-  <img src="assets/gazebo_simulation.png" width="700" alt="Gazebo restaurant simulation">
+  <img src="assets/Simulation-image.jpg" width="700" alt="Gazebo restaurant simulation">
   <br>
   <em>Restaurant environment and navigation simulation in ROS2 and Gazebo.</em>
 </p>
@@ -88,12 +99,6 @@ Throughout this process, a motor control node (the closed-loop controller) conti
 
 Moreover, the robot’s linear speed is modulated based on the complexity of the upcoming path segment and the magnitude of the tracking error. The robot will automatically slow down when approaching a sharp turn or a complex junction, providing more time to accurately execute the maneuver, and will speed up on long straight segments once it is properly aligned with the guide line. The result is a smooth line-following behavior that can handle gentle curves and intersections without jerky movements or losing the path. By combining vision-based line tracking, marker-based junction recognition, and graph-based path planning, the robot effectively navigates the restaurant environment to deliver orders to specified locations.
 
-<p align="center">
-  <img src="assets/ros_node_diagram.png" width="800" alt="ROS node and topic diagram">
-  <br>
-  <em>ROS node and topic diagram of the navigation system.</em>
-</p>
-
 ---
 
 ## Collision Avoidance
@@ -108,7 +113,7 @@ The collision avoidance routine operates as follows:
 4. Audible Warning: If the obstacle persists in the path after the short wait, the robot then issues an audible warning to prompt clearance. The onboard laptop’s speakers play a pre-recorded message or sound (for example, a polite spoken request such as “Excuse me, please clear the way”) to alert nearby people of the robot’s presence. This audio alert is intended to draw human attention and politely request assistance in removing or bypassing the obstacle. The system uses ROS 2 audio output capabilities to automate this warning step as part of the collision avoidance behavior.
 
 <p align="center">
-  <img src="assets/collision_detection.png" width="500" alt="Depth camera detecting a person">
+  <img src="assets/Object-detection.jpg" width="500" alt="Depth camera detecting a person">
   <br>
   <em>Depth camera detecting a person and measuring distance.</em>
 </p>
